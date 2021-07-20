@@ -5,8 +5,9 @@ import CreatePass from '../components/SignUp/CreatePassword';
 import Home from '../components/Home/Home';
 import GuardedRoute from './GuardedRoute';
 import MobileNum from '../components/SignUp/MobileNum';
+import IdentNumber from '../components/SignUp/IdentificationNum';
+import Header from '../components/SignUp/Header';
 import './App.css';
-//localStorage.clear();
 
 const useStateWithLocalStorage = () => {
   const [userSignedUp, setIfSignUp] = useState(
@@ -23,52 +24,56 @@ const useStateWithLocalStorage = () => {
   return [userSignedUp, setIfSignUp];
 };
 
-const App = () => {
-  // const [userSignedUp, setIfSignUp] = useState(
-  //   JSON.parse(localStorage.getItem('userID')) || true
-  // );
+const pathArray = ['/signup/mobile', '/signup/idnumber', '/signup/password'];
 
-  //const [userSignedUp, setIfSignUp] = useState(false);
+const App = () => {
+
   const [userID, setUserID] = useState('');
   const [userSignedUp, setIfSignUp] = useStateWithLocalStorage();
 
-  // const booleanContext = createContext(setIfSignUp);
 
   return (
-    // <booleanContext.Provider value={setIfSignUp}>
     <div className='App-div'>
-      {userSignedUp ? <Redirect to='/home' /> : <Redirect to='/signup' />}
-      {/* <GuardedRoute
-        exact
-        path='/home'
-        component={Home}
-        auth={userSignedUp}
-        userIDNumber={userID}
-        setIfSignUp={setIfSignUp}
-      /> */}
-      <GuardedRoute exact path='/home' auth={userSignedUp}>
-        <Home
-          userIDNumber={userID}
-          setIfSignUp={setIfSignUp}
-          //auth={userSignedUp}
-        />
-      </GuardedRoute>
+      <Header />
+      {userSignedUp ? <Redirect to='/home' /> : <Redirect exact to='/' />}
       <Switch>
+        <Redirect exact from='/' to="/signup/mobile" />
+        <Route path='/signup/mobile' component={MobileNum} />
+        <Route path='/signup/idnumber'>
+          <IdentNumber setPersonalID={setUserID} />
+        </Route>
+        <Route path='/signup/password'>
+          <CreatePass
+            setIfSignUp={setIfSignUp}
+            pathsArray={pathArray}
+          />
+        </Route>
         <Route path='/signup'>
           <SignUp setUserNumber={setUserID} setIfSignUp={setIfSignUp} />
         </Route>
-        <Route path='/signup/mobile' component={MobileNum} />
-        {/* <Route path='/home'>
+        <GuardedRoute path='/home' auth={userSignedUp}>
           <Home
             userIDNumber={userID}
             setIfSignUp={setIfSignUp}
-            auth={userSignedUp}
           />
-        </Route> */}
-        {/* <CreatePass /> */}
+        </GuardedRoute>
+
+        {/* <GuardedRoute path='/home' auth={userSignedUp}>
+        <Home
+          userIDNumber={userID}
+          setIfSignUp={setIfSignUp}
+        />
+      </GuardedRoute>
+      {/* <Redirect from="/signup" to='/signup/mobile' /> */}
+        {/* <Route path='/signup'>
+          <SignUp setUserNumber={setUserID} setIfSignUp={setIfSignUp} />
+        </Route>
+        <Route path='/signup/mobile' component={MobileNum} />
+        <Route exact path="/">
+          { userSignedUp ? <Redirect to="/home" /> : <Redirect to="/signup" />}
+        </Route>  */}
       </Switch>
     </div>
-    // </booleanContext.Provider>
   );
 };
 

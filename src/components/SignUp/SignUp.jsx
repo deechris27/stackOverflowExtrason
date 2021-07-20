@@ -43,15 +43,16 @@ class SignUp extends Component {
   render() {
     return (
       <div className='signUp-div'>
-        <Header />
-        
-        <Router>
+        {/* <Header /> */}
+        <h1>I'm in Signup Page</h1>
+        <Redirect to='/' />
+        {/* <Router>
           <div className='form-div'>
           <Redirect to='/signup/mobile' />
-            <Switch>
+            <Switch> */}
             
-              <Route path='/signup/mobile' component={MobileNum} />
-              <Route path='/signup/idnumber'>
+              {/* <Route path='/signup/mobile' component={MobileNum} /> */}
+              {/* <Route path='/signup/idnumber'>
                 <IdentNumber setPersonalID={this.props.setUserNumber} />
               </Route>
               <Route exact path={'/signup/password'}>
@@ -62,7 +63,7 @@ class SignUp extends Component {
               </Route>
             </Switch>
           </div>
-        </Router>
+        </Router> */}
       </div>
     );
   }
