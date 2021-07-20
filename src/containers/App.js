@@ -4,6 +4,7 @@ import SignUp from '../components/SignUp/SignUp';
 import CreatePass from '../components/SignUp/CreatePassword';
 import Home from '../components/Home/Home';
 import GuardedRoute from './GuardedRoute';
+import MobileNum from '../components/SignUp/MobileNum';
 import './App.css';
 //localStorage.clear();
 
@@ -53,9 +54,10 @@ const App = () => {
         />
       </GuardedRoute>
       <Switch>
-        <Route exact path='/signup'>
+        <Route path='/signup'>
           <SignUp setUserNumber={setUserID} setIfSignUp={setIfSignUp} />
         </Route>
+        <Route path='/signup/mobile' component={MobileNum} />
         {/* <Route path='/home'>
           <Home
             userIDNumber={userID}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Route, Switch, Router } from 'react-router-dom';
+import { Redirect, Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import Header from './Header.jsx';
 import MobileNum from './MobileNum.jsx';
 import IdentNumber from './IdentificationNum.jsx';
@@ -44,12 +44,14 @@ class SignUp extends Component {
     return (
       <div className='signUp-div'>
         <Header />
-        <Router history={history}>
+        
+        <Router>
           <div className='form-div'>
-            <Redirect to='/signup/mobile' />
+          <Redirect to='/signup/mobile' />
             <Switch>
-              <Route exact path={'/signup/mobile'} component={MobileNum} />
-              <Route exact path={'/signup/idnumber'}>
+            
+              <Route path='/signup/mobile' component={MobileNum} />
+              <Route path='/signup/idnumber'>
                 <IdentNumber setPersonalID={this.props.setUserNumber} />
               </Route>
               <Route exact path={'/signup/password'}>
