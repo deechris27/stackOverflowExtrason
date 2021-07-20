@@ -1,0 +1,19 @@
+.h1 {
+  color: #ffffcc;
+}
+.inputStyle {
+  line-height: 2em;
+}
+
+.revealId {
+  font-size: 30px;
+  color: white;
+}
+
+#error {
+  left: 0;
+  right: 0;
+  color: red;
+  font-size: 4mm;
+  position: absolute;
+}

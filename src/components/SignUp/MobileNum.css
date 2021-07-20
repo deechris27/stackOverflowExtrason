@@ -1,0 +1,24 @@
+.mobile-num {
+  font-size: 30px;
+}
+#error {
+  color: red;
+  font-size: 4mm;
+}
+input {
+  font-weight: bold;
+  font-size: 15px;
+  /* line-height: 2em; */
+  height: 3ch;
+}
+
+input::placeholder {
+  font-size: 10px;
+  font-weight: normal;
+}
+
+button {
+  width: 120px;
+  height: 30px;
+  font-weight: bold;
+}
